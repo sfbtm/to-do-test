@@ -110,3 +110,19 @@ main{
 .container__list__item__input{
     margin-right: 1rem;
 }
+
+/* Estilos del input que se aplica en el JAVASCRIPT */
+
+.container__list__item__text-input{
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: 0.5s;
+    border-radius: 20px;
+}
+
+.container__list__item__text-input:focus{
+    border: 1px solid #fff;
+    padding: 0.2rem;
+}
