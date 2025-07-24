@@ -4,9 +4,12 @@ const titulo = document.querySelector(".upper-text__title");
 // Lista de tareas
 const listaTareas = document.querySelector(".container__list");
 
+
 // Boton de añadir tarea
 const añadirTareaBtn = document.querySelector(".upper-text__add");
 
+
+// Funcion para tachar una tarea al ser completada
 function strike(casilla, texto){
 
     if (casilla.checked){
@@ -19,6 +22,10 @@ function strike(casilla, texto){
 }
 
 
+// Funcion para borrar una tarea con el boton de basura
+
+
+
 añadirTareaBtn.addEventListener("click", (event) => {
 
     // Solicitar nombre de la tarea (input) y configurarlo
@@ -26,9 +33,11 @@ añadirTareaBtn.addEventListener("click", (event) => {
     tareaNombre.classList.add("container__list__item__text-input");
     tareaNombre.value = "Nueva tarea";
 
-    // Crear nodo de item de lista y de input (checkbox)
+    // Crear nodo de item de lista, de input (checkbox) y de trash
     const tareaLi = document.createElement("li");
     const tareaInput = document.createElement("input");
+    const tareaTrash = document.createElement("button");
+
 
     // Configurar input checkbox
     tareaInput.type = "checkbox";
@@ -36,20 +45,29 @@ añadirTareaBtn.addEventListener("click", (event) => {
     // Añadir clases a nodos
     tareaLi.classList.add("container__list__item");
     tareaInput.classList.add("container__list__item__input");
+    tareaTrash .classList.add("container__list__item__trash");
 
     // Parentar nodos
     tareaLi.appendChild(tareaInput);
     tareaLi.appendChild(tareaNombre);
+    tareaLi.appendChild(tareaTrash);
     listaTareas.appendChild(tareaLi);
+
 
     // Provocar focus en el input del texto
     tareaNombre.focus()
 
     // Darle evento de checked al checkbox para que el texto tenga strike-throught
-
     tareaInput.addEventListener("click", (event) =>{
         strike(tareaInput,tareaNombre);
+
+    // Darle evento al boton de borrar tareas
+
     });
+
+        tareaTrash.addEventListener("click",(event) => {
+        tareaLi.remove()
+    })
 
 })
 
@@ -57,31 +75,22 @@ añadirTareaBtn.addEventListener("click", (event) => {
 
 const listaItem = document.querySelectorAll(".container__list__item")
 
-function encontrarHijos(lista){
-    listaItem.forEach(item => {
-        let hijos = item.children;
-        let checkbox = hijos[0];
-        let texto = hijos[1];
-
-        console.log(hijos)
-
-    })
-}
 
 listaItem.forEach(item =>{
     let hijos = item.children;
     let checkbox = hijos[0];
     let texto = hijos[1];
+    let trash = hijos[2];
 
     checkbox.addEventListener("click",(event) => {
         strike(checkbox,texto)
     })
+
+    trash.addEventListener("click", (event) => {
+        item.remove()
+    })
+
 })
 
-console.log(encontrarHijos(listaItem))
 
-//  casillasDefecto.forEach(casilla => {
-//      casilla.addEventListener("click", (event) => {
-//          strike(casilla);
-//      })})
-
+// Borrar tareas

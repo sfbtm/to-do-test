@@ -107,6 +107,7 @@ main{
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
+    transition: 0.5s;
 }
 
 .container__list__item__input{
@@ -122,11 +123,15 @@ main{
     border: none;
     border-radius: 10px;
     display: none;
+    transition: 0.2s;
+}
+
+.container__list__item:hover .container__list__item__trash{
+    display: inline-block;
 }
 
 .container__list__item__trash:hover{
-    background-color: red;
-    display: inline-block;
+    background-color: red
 }
 
 /* Estilos del input que se aplica en el JAVASCRIPT */
