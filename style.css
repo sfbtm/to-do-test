@@ -105,10 +105,28 @@ main{
 .container__list__item{
     list-style: none;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
 }
 
 .container__list__item__input{
     margin-right: 1rem;
+}
+
+.container__list__item__trash{
+    background-color: #fff;
+    height: 2.2rem;
+    width: 2.2rem;
+    background-size: cover;
+    background-image: url(img/trash.svg);
+    border: none;
+    border-radius: 10px;
+    display: none;
+}
+
+.container__list__item__trash:hover{
+    background-color: red;
+    display: inline-block;
 }
 
 /* Estilos del input que se aplica en el JAVASCRIPT */
