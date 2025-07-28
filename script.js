@@ -12,6 +12,7 @@ const añadirTareaBtn = document.querySelector(".upper-text__add");
 // Funcion para tachar una tarea al ser completada
 function strike(casilla, texto){
 
+    casilla.addEventListener("click", ( event ) => {
     if (casilla.checked){
         texto.style.textDecoration = "line-through"
     }
@@ -19,24 +20,24 @@ function strike(casilla, texto){
     else {
         texto.style.textDecoration = "none"
     }
+    })
+
 }
 
 
-// Funcion para borrar una tarea con el boton de basura
+// Funcion para crear una tarea
 
-
-
-añadirTareaBtn.addEventListener("click", (event) => {
-
+const crearTarea = () =>{
     // Solicitar nombre de la tarea (input) y configurarlo
     const tareaNombre = document.createElement("input");
     tareaNombre.classList.add("container__list__item__text-input");
     tareaNombre.value = "Nueva tarea";
 
-    // Crear nodo de item de lista, de input (checkbox) y de trash
+    // Crear nodo de item de lista, de input (checkbox) y de trash y menu
     const tareaLi = document.createElement("li");
     const tareaInput = document.createElement("input");
     const tareaTrash = document.createElement("button");
+    const tareaMenu = document.createElement("button");
 
 
     // Configurar input checkbox
@@ -46,28 +47,46 @@ añadirTareaBtn.addEventListener("click", (event) => {
     tareaLi.classList.add("container__list__item");
     tareaInput.classList.add("container__list__item__input");
     tareaTrash .classList.add("container__list__item__trash");
+    tareaMenu .classList.add("container__list__item__menu");
 
     // Parentar nodos
     tareaLi.appendChild(tareaInput);
     tareaLi.appendChild(tareaNombre);
     tareaLi.appendChild(tareaTrash);
+    tareaLi.appendChild(tareaMenu);
     listaTareas.appendChild(tareaLi);
 
 
     // Provocar focus en el input del texto
     tareaNombre.focus()
 
-    // Darle evento de checked al checkbox para que el texto tenga strike-throught
-    tareaInput.addEventListener("click", (event) =>{
-        strike(tareaInput,tareaNombre);
+    return tareaLi
+}
 
-    // Darle evento al boton de borrar tareas
+// Funcion para eliminar una tarea con el boton
 
-    });
-
-        tareaTrash.addEventListener("click",(event) => {
-        tareaLi.remove()
+const eliminarTarea = (tarea,boton) => {
+    boton.addEventListener("click", ( event ) => {
+        tarea.remove()
     })
+}
+
+// Funcion para abrir menu
+
+
+añadirTareaBtn.addEventListener("click", (event) => {
+
+    tareaLi = crearTarea();
+    // Identificando hijos
+    tareaInput = tareaLi.childNodes[0];
+    tareaNombre = tareaLi.childNodes[1];
+    tareaTrash = tareaLi.childNodes[2];
+    tareaMenu = tareaLi.childNodes[3];
+
+    eliminarTarea(tareaLi,tareaTrash);
+
+
+
 
 })
 
@@ -82,14 +101,9 @@ listaItem.forEach(item =>{
     let texto = hijos[1];
     let trash = hijos[2];
 
-    checkbox.addEventListener("click",(event) => {
-        strike(checkbox,texto)
-    })
+    strike(checkbox,texto);
 
-    trash.addEventListener("click", (event) => {
-        item.remove()
-    })
-
+    eliminarTarea(item,trash);
 })
 
 
