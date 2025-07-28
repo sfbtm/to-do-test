@@ -47,6 +47,14 @@ body{
     margin: 1rem 0
 }
 
+.aside__list__item__button{
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
 .aside__button{
     display: block;
     margin: 1rem auto;
