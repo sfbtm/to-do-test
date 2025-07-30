@@ -31,6 +31,8 @@ añadirTareaBtn.addEventListener("click", (event) => {
     anadirTarea(categoriaActual, "Nueva tarea", false);
     cargarCategoria(listaTareas, tareas);
 
+
+
 })
 
 // Evento para modificar el nombre de una tarea
@@ -63,8 +65,9 @@ listaTareas.addEventListener("click", (event) =>{
 
     // Para eliminar una tarea
     if (event.target.matches(".container__list__item__trash")){
+        console.log(boton.closest("li"));
         eliminarTarea(categoriaActual, indice)
-        boton.closest("li").remove()
+        cargarCategoria(listaTareas,obtenerTareas(categoriaActual))
     }
 })
 

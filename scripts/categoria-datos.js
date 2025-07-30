@@ -34,12 +34,11 @@ export const modificarTarea = (categoria, cambio, indice, valorNuevo) => {
     const tarea = lista[indice];
 
     tarea[cambio] = valorNuevo;
-    
-
     console.log(datos[categoria])
 }
 
 export const eliminarTarea = (categoria, indice) => {
+    console.log(`Eliminando ${indice} de ${categoria}`)
     datos[categoria].splice(indice,1);
 }
 
