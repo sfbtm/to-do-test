@@ -2,7 +2,6 @@
 
 export function strike(casilla, texto){
 
-    casilla.addEventListener("click", ( event ) => {
     if (casilla.checked){
         texto.style.textDecoration = "line-through"
     }
@@ -10,7 +9,6 @@ export function strike(casilla, texto){
     else {
         texto.style.textDecoration = "none"
     }
-    })
 
 }
 
@@ -45,20 +43,12 @@ export const crearTarea = (listaTareas) =>{
     tareaLi.appendChild(tareaMenu);
     listaTareas.appendChild(tareaLi);
 
-
     // Provocar focus en el input del texto
     tareaNombre.focus()
 
     return tareaLi
 }
 
-// Funcion para eliminar una tarea con el boton
-
-export const eliminarTarea = (tarea,boton) => {
-    boton.addEventListener("click", ( event ) => {
-        tarea.remove()
-    })
-}
 
 // Funcion para cambiar el titulo de la categoria al momento de cargarla
 // Parametros: Categoria actual y el titulo de la lista de tareas
@@ -72,14 +62,15 @@ export const cargarCategoria = ( contenedor, tareas ) => {
     contenedor.innerHTML = "";
 
     // Añadir tareas al contenedor
-    tareas.forEach(tarea => {
-
+    tareas.forEach((tarea, indice) => {
         const nodoTarea = crearTarea(contenedor);
         let tareaInput = nodoTarea.childNodes[0];
         let tareaNombre = nodoTarea.childNodes[1];
         tareaInput.checked = tarea["hecho"];
         tareaNombre.value = tarea["nombre"];
-
+        // Dataset para interactuar en el DOM
+        nodoTarea.dataset.index = indice;
+        strike(tareaInput, tareaNombre);
     })
 
 }

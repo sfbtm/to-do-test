@@ -14,13 +14,31 @@ export const obtenerTareas = categoria => {
     return datos[categoria];
 }
 
-export const anadirTarea = (categoria, tarea) => {
-    datos[categoria].push(tarea);
+export const anadirTarea = (categoria, tarea, status) => {
+
+    const tareaObjeto = {
+        nombre: tarea,
+        hecho: status
+    };
+
+    datos[categoria].push(tareaObjeto);
 }
 
-export const eliminarTarea = (categoria, tarea) => {
-    indice = datos[categoria].indexOf(tarea);
-    data[categoria].splice(indice,1);
+// Funcion para modificar una tarea. Parametros:
+// Categoria actual, cambio (Nombre o checkbox), nombre de la tarea, valor del elemento cambiado (Nombre o chekcbox)
+
+export const modificarTarea = (categoria, cambio, indice, valorNuevo) => {
+    const lista = obtenerTareas(categoria);
+    const tarea = lista[indice];
+
+    tarea[cambio] = valorNuevo;
+    
+    
+    console.log(datos[categoria])
+}
+
+export const eliminarTarea = (categoria, indice) => {
+    datos[categoria].splice(indice,1);
 }
 
 export const crearCategoria = (categoria) => {
