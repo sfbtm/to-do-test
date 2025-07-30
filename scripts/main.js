@@ -25,9 +25,11 @@ cargarCategoria(listaTareas, obtenerTareas(categoriaActual));
 // Añadir una tarea
 
 añadirTareaBtn.addEventListener("click", (event) => {
+    // Obtener las tareas para pasarlas como array
+    const tareas = obtenerTareas(categoriaActual)
 
     anadirTarea(categoriaActual, "Nueva tarea", false);
-    cargarCategoria(listaTareas, obtenerTareas(categoriaActual));
+    cargarCategoria(listaTareas, tareas);
 
 })
 
@@ -85,18 +87,18 @@ categoriasLista.addEventListener("click", (event) => {
 
 // Añadir line-through al texto de las casillas que vienen por defecto
 
-const listaItem = document.querySelectorAll(".container__list__item")
+// const listaItem = document.querySelectorAll(".container__list__item")
 
 
-listaItem.forEach(item =>{
+// listaItem.forEach(item =>{
 
-    let hijos = item.children;
-    let checkbox = hijos[0];
-    let texto = hijos[1];
-    let trash = hijos[2];
+//     let hijos = item.children;
+//     let checkbox = hijos[0];
+//     let texto = hijos[1];
+//     let trash = hijos[2];
 
-    strike(checkbox,texto);
+//     strike(checkbox,texto);
 
-})
+// })
 
 // checkbox con strike re-escrito

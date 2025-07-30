@@ -22,6 +22,8 @@ export const anadirTarea = (categoria, tarea, status) => {
     };
 
     datos[categoria].push(tareaObjeto);
+
+
 }
 
 // Funcion para modificar una tarea. Parametros:
@@ -33,7 +35,7 @@ export const modificarTarea = (categoria, cambio, indice, valorNuevo) => {
 
     tarea[cambio] = valorNuevo;
     
-    
+
     console.log(datos[categoria])
 }
 

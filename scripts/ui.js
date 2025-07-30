@@ -19,33 +19,30 @@ export const crearTarea = (listaTareas) =>{
     const tareaNombre = document.createElement("input");
     tareaNombre.classList.add("container__list__item__text-input");
     tareaNombre.value = "Nueva tarea";
-
+    
     // Crear nodo de item de lista, de input (checkbox) y de trash y menu
     const tareaLi = document.createElement("li");
     const tareaInput = document.createElement("input");
     const tareaTrash = document.createElement("button");
     const tareaMenu = document.createElement("button");
-
-
+    
+    
     // Configurar input checkbox
     tareaInput.type = "checkbox";
-
+    
     // Añadir clases a nodos
     tareaLi.classList.add("container__list__item");
     tareaInput.classList.add("container__list__item__input");
     tareaTrash .classList.add("container__list__item__trash");
     tareaMenu .classList.add("container__list__item__menu");
-
+    
     // Parentar nodos
     tareaLi.appendChild(tareaInput);
     tareaLi.appendChild(tareaNombre);
     tareaLi.appendChild(tareaTrash);
     tareaLi.appendChild(tareaMenu);
     listaTareas.appendChild(tareaLi);
-
-    // Provocar focus en el input del texto
-    tareaNombre.focus()
-
+    
     return tareaLi
 }
 
@@ -58,8 +55,13 @@ export const cambiarTitulo = ( categoria, titulo ) => {
 }
 
 export const cargarCategoria = ( contenedor, tareas ) => {
+
+
     // Vaciar el contenedor de tareas
     contenedor.innerHTML = "";
+
+    // Lista para poner un focus a la ultima tarea
+    let tareasLista = []
 
     // Añadir tareas al contenedor
     tareas.forEach((tarea, indice) => {
@@ -71,6 +73,13 @@ export const cargarCategoria = ( contenedor, tareas ) => {
         // Dataset para interactuar en el DOM
         nodoTarea.dataset.index = indice;
         strike(tareaInput, tareaNombre);
+        tareasLista.push(nodoTarea) // Mandar el nodo de la tarea a la lista
     })
+
+
+    // añadiendo focus
+    const tareaNombre = tareasLista.at(-1).querySelector(".container__list__item__text-input")
+
+    tareaNombre.focus()
 
 }
